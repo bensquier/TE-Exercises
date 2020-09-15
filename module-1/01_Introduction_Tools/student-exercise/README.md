@@ -29,7 +29,7 @@ After completing this exercise, you should understand:
 - Refererence Finder (Mac) or Explorer (PC) for a visual of directory structure created by your script.
 - When stuck, check to make sure none of your folder or file names contain any typos.
 
-
+cd ~
 ## Instructions
 
 ### Step One: Prepare Your Workspace
@@ -112,7 +112,7 @@ After you have verified your progress by running `sh verify.sh` and seen the fol
 ✅ 2. ~/playground/usa exists
 ✅ 3. ~/playground/canada exists
 ✅ 4. ~/playground/usa/ohio exists
-✅ 5. ~/playground/usa/pennsylvania exists
+✅ 5. ~/playground/usa/pennsylvania existsgot
 ✅ 6. ~/playground/usa/michigan exists
 ✅ 7. ~/playground/canada/quebec exists
 ✅ 8. ~/playground/canada/british columbia exists
