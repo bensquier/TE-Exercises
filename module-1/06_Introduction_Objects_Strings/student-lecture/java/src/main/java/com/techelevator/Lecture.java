@@ -52,7 +52,7 @@ public class Lecture {
 		 * toUpperCase <- very common
 		 * trim
 		 */
-		
+
 		System.out.println("Let's evaluate myString - 'Hello, World!");
 		// Does it end in ! ?
 		System.out.println(myString.endsWith("!"));
