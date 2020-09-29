@@ -17,5 +17,11 @@ public class Application {
         //....
         // This might go on until the auction runs out of time or hits a max # of bids
 
+        for(Bid bid : generalAuction.getAllBids() ) {
+        	System.out.println(bid.getBidder() + " offers: " + bid.getBidAmount());
+        }
+        
+        System.out.println("Current Winner: " + generalAuction.getHighBid().getBidder());
+        
     }
 }

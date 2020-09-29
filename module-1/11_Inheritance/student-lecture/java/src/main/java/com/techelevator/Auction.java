@@ -5,26 +5,12 @@ import java.util.List;
 
 public class Auction {
 
+	//Private Members
 	private String itemForSale;
 	private Bid currentHighBid;
 	private List<Bid> allBids;
-
-	public Auction(String itemForSale) {
-		this.itemForSale = itemForSale;
-		this.currentHighBid = new Bid("", 0);
-		allBids = new ArrayList<>();
-	}
-
-	public boolean placeBid(Bid offeredBid) {
-		allBids.add(offeredBid);
-		boolean isCurrentWinningBid = false;
-		if (offeredBid.getBidAmount() > currentHighBid.getBidAmount()) {
-			currentHighBid = offeredBid;
-			isCurrentWinningBid = true;
-		}
-		return isCurrentWinningBid;
-	}
-
+	
+	//Public Properties
 	public Bid getHighBid() {
 		return currentHighBid;
 	}
@@ -36,4 +22,28 @@ public class Auction {
 	public String getItemForSale() {
 		return itemForSale;
 	}
+
+	//Constructor
+	public Auction(String itemForSale) {
+		this.itemForSale = itemForSale;
+		this.currentHighBid = new Bid("", 0);
+		allBids = new ArrayList<>();
+	}
+	
+	//Private Methods(If needed)
+
+	//Public Methods
+	public boolean placeBid(Bid offeredBid) {
+		allBids.add(offeredBid);
+		boolean isCurrentWinningBid = false;
+		if (offeredBid.getBidAmount() > currentHighBid.getBidAmount()) {
+			currentHighBid = offeredBid;
+			isCurrentWinningBid = true;
+		}
+		return isCurrentWinningBid;
+	}
+	
+	
+
+	
 }
