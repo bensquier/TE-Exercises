@@ -1,10 +1,12 @@
 package com.techelevator;
 
 import org.junit.After; // The @After annotation is used to execute a method after every test
+import org.junit.AfterClass;
 import org.junit.Assert; // The Assert class has static assertion methods for validating test results
 import org.junit.Before; // The @Before annotation is used to execute a method before every test
-import org.junit.Test; // The @Test annotation is used to label methods that should be run as tests
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Test; // The @Test annotation is used to label methods that should be run as tests
 import org.junit.runners.MethodSorters;
 
 /* Like all other Java code, unit testing code is defined within a class.
@@ -23,6 +25,18 @@ public class LectureTest {
 	/* If a method is annotated with @Before, it will be executed immediately prior to every test.
 	 * It is intended to be used when there is a repetitive setup (i.e. "Arrange") task that is
 	 * performed by several tests */
+	
+	@BeforeClass
+	public static void doClassSetup() {
+		System.out.println("I am called before the test class and any test is run");
+	}
+	
+	@AfterClass
+	public static void doClassTeardown() {
+		System.out.println("I am called after all test is run and the test class is diposed of");
+	}
+	
+	
 	@Before
 	public void setup() {
 		System.out.println("setup");
@@ -99,5 +113,12 @@ public class LectureTest {
 
 	public void this_method_is_not_a_test_because_it_does_not_have_the_Test_annotation() {
 		// This method will not be run by Junit, because it's not a test
+	}
+	
+	@Test
+	public void this_test_does_nothing() {
+		//DO NOTHING
+		//One way we can use assertFail it to always fail un-implemented tests
+		Assert.fail("Test Not Implemented");
 	}
 }
