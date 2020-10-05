@@ -13,6 +13,7 @@ public class ExceptionsLecture {
 		 * 
 		 * By using try/catch blocks, you can stop the Exception from exiting the method and provide
 		 * code to handle it. */
+		System.out.println("Demo #1");
 		System.out.println("The following cities: ");
 		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
 		try {
@@ -25,8 +26,11 @@ public class ExceptionsLecture {
 			// Flow of control resumes here after the Exception is thrown
 			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
 		}
+		//HEPFUL COMMAND TO HALT EXECUTION: 0 = Successful      1 = Unsuccessful
+		//System.exit(0);
 		
-		System.out.println();
+		
+		System.out.println("\nDemo #2");
 		
 		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
 		try {
@@ -36,6 +40,8 @@ public class ExceptionsLecture {
 		} catch(ArrayIndexOutOfBoundsException e) {  
 			System.out.println("Call the Darwin Awards...");
 		}
+		
+		System.out.println("\nDEMO #3");
 		
 		System.out.println();
 		
@@ -64,6 +70,8 @@ public class ExceptionsLecture {
 			System.out.println(e.getMessage());
 		}
 		System.out.println();
+		
+		System.out.println("\n DEMO #4");
 		
 		
 		/* The withdraw method can throw a checked exception (i.e. OverdraftException) so we need to catch it since
