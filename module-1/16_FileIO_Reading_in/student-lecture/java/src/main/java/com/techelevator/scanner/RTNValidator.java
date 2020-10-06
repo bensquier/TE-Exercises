@@ -34,7 +34,7 @@ public class RTNValidator {
 
 	@SuppressWarnings("resource")
 	private static File getInputFileFromUser() {
-		Scanner userInput = new Scanner(System.in);
+		Scanner userInput = new Scanner(System.in);git s
 		System.out.print("Please enter path to input file >>> ");
 		String path = userInput.nextLine();
 		
