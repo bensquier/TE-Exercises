@@ -2,7 +2,11 @@
 
 -- Populations of all countries in descending order
 
+SELECT name, population FROM country ORDER BY population DESC;
+
 --Names of countries and continents in ascending order
+
+SELECT name, continent FROM country ORDER BY continent, name ASC;
 
 -- LIMITING RESULTS
 -- The name and average life expectancy of the countries with the 10 highest life expectancies.
