@@ -169,7 +169,7 @@ LIMIT 10;
 -- (NOTE: Keep in mind that an employee may work at multiple stores.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
 
-SELECT s.store_id AS store_id, a.address, COUNT(r.rental_id), SUM(amount), 
+SELECT s.store_id AS store_id, a.address, COUNT(r.rental_id), SUM(amount),  SUM(amount) / COUNT(r.rental_id)  AS average_sale
 FROM address a
         INNER JOIN store s
                 ON a.address_id = s.address_id
@@ -179,7 +179,8 @@ FROM address a
                                                 ON inv.inventory_id = r.inventory_id
                                                         LEFT JOIN payment p
                                                                 ON r.rental_id = p.rental_id
-GROUP BY s.store_id, a.address;
+GROUP BY s.store_id, a.address
+ORDER BY s.store_id;
                                                                 
 
 -- 16. The top ten film titles by number of rentals
@@ -234,5 +235,40 @@ LIMIT 5;
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor 
 -- (#1 should be â€œGINA DEGENERESâ€? with 753 rentals and #10 should be â€œSEAN GUINESSâ€? with 599 rentals)
 
--- 20. The top 5 â€œComedyâ€? actors ranked by number of rentals of films in the â€œComedyâ€? category starring that actor 
+SELECT a.first_name || ' ' || a.last_name AS actor_name, COUNT(inv.film_id)
+FROM actor a
+        INNER JOIN film_actor fa
+                ON a.actor_id = fa.actor_id
+                        INNER JOIN film f
+                                ON fa.film_id = f.film_id
+                                        LEFT JOIN inventory inv
+                                                ON f.film_id = inv.film_id
+                                                        LEFT JOIN rental r
+                                                                ON inv.inventory_id = r.inventory_id
+GROUP BY a.actor_id
+ORDER BY COUNT(inv.film_id) DESC
+LIMIT 10;
+
+
+-- 20. The top 5 Comedy actors ranked by number of rentals of films in the Comedy category starring that actor 
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
+
+SELECT a.first_name || ' ' || a.last_name AS actor_name, COUNT(inv.film_id) AS times_rented
+FROM actor a
+        INNER JOIN film_actor fa
+                ON a.actor_id = fa.actor_id
+                        INNER JOIN film f
+                                ON fa.film_id = f.film_id
+                                        INNER JOIN film_category fc
+                                                ON f.film_id = fc.film_id
+                                                        INNER JOIN category c
+                                                                ON fc.category_id = c.category_id
+                                                                        LEFT JOIN inventory inv
+                                                                                ON f.film_id = inv.film_id
+                                                                                        LEFT JOIN rental r
+                                                                                                ON inv.inventory_id = r.inventory_id
+WHERE c.name = 'Comedy'                                       
+GROUP BY a.actor_id
+ORDER BY COUNT(inv.film_id) DESC
+LIMIT 5;
+
