@@ -3,6 +3,7 @@ package com.techelevator.dao.jdbc;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 public class BaseDAOTests {
 
     static SingleConnectionDataSource dataSource;
+    protected JdbcTemplate jdbcTemplate;
+
 
     @BeforeClass
     public static void setupDataSource() {
