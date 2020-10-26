@@ -17,17 +17,17 @@ public class App {
         while (menuSelection != 0) {
             menuSelection = consoleService.printMainMenu();
             if (menuSelection == 1) {
-                consoleService.printHotels(hotelService.listHotels());
+                System.out.println("Not implemented");
             } else if (menuSelection == 2) {
-                consoleService.printReviews(hotelService.listReviews());
+                System.out.println("Not implemented");
             } else if (menuSelection == 3) {
-                consoleService.printHotel(hotelService.getHotelById(1));
+                System.out.println("Not implemented");
             } else if (menuSelection == 4) {
-                consoleService.printReviews(hotelService.getReviewsByHotelId(1));
+                System.out.println("Not implemented");
             } else if (menuSelection == 5) {
-                consoleService.printHotels(hotelService.getHotelsByStarRating(3));
+                System.out.println("Not implemented");
             } else if (menuSelection == 6) {
-                System.out.println(hotelService.getWithCustomQuery());
+                System.out.println("Not implemented - Create a custom Web API query here");
             } else if (menuSelection == 0) {
                 consoleService.exit();
             } else {

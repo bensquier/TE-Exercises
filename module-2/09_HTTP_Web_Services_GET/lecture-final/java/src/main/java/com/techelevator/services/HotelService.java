@@ -15,27 +15,27 @@ public class HotelService {
     }
 
     public Hotel[] listHotels() {
-        return restTemplate.getForObject(API_BASE_URL + "hotels", Hotel[].class);
+        return null;
     }
 
     public Review[] listReviews() {
-        return restTemplate.getForObject(API_BASE_URL + "reviews", Review[].class);
+        return null;
     }
 
     public Hotel getHotelById(int id) {
-        return restTemplate.getForObject(API_BASE_URL + "hotels/" + id, Hotel.class);
+        return null;
     }
 
     public Review[] getReviewsByHotelId(int hotelID) {
-        return restTemplate.getForObject(API_BASE_URL + "hotels/" + hotelID + "/reviews", Review[].class);
+        return null;
     }
 
     public Hotel[] getHotelsByStarRating(int stars) {
-        return restTemplate.getForObject(API_BASE_URL + "hotels?stars=" + stars, Hotel[].class);
+        return null;
     }
 
     public City getWithCustomQuery(){
-        return restTemplate.getForObject("https://api.teleport.org/api/cities/geonameid:5128581/", City.class);
+        return null;
     }
 
 }
