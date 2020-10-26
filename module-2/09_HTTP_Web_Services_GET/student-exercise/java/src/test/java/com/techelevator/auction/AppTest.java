@@ -121,10 +121,10 @@ public class AppTest {
                 Mockito.when(mockRestTemplate.getForObject(Mockito.eq("http://localhost:3000/auctions?title_like=nope"),
                                 Mockito.eq(Auction[].class)))
                                 .thenThrow(new HttpClientErrorException(HttpStatus.NOT_FOUND));
-                app.restTemplate = mockRestTemplate;
+                App.restTemplate = mockRestTemplate;
 
                 // Act
-                Auction[] auctions = app.findAuctionsSearchTitle();
+                Auction[] auctions = App.findAuctionsSearchTitle();
 
                 // Assert
                 Mockito.verify(mockRestTemplate, Mockito.times(1)).getForObject(ArgumentMatchers.anyString(),

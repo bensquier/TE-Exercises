@@ -24,23 +24,48 @@ public class App {
     }
 
     public static Auction[] listAllAuctions() {
-        // api code here
-        return null;
+    	Auction[] auctions = restTemplate.getForObject(API_URL, Auction[].class);
+    	return auctions;
     }
 
     public static Auction listDetailsForAuction() {
-        // api code here
-        return null;
+    	int auctionId = -1;
+    	System.out.print("Please choose a auction to get details for: ");
+    	try {
+           auctionId = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException exception) {
+            System.out.println("Error parsing the input for menu selection.");
+        }
+        System.out.println("");
+    	Auction auction = restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
+    	return auction;
     }
 
     public static Auction[] findAuctionsSearchTitle() {
-        // api code here
-        return null;
+    	String auctionTitle = "";
+    	System.out.println("Please enter the title of the auction you would like to find: ");
+    	try {
+    		auctionTitle = scanner.nextLine();
+    	} catch (Exception e) {
+    		System.out.println("Error parsing the input for menu selection.");
+    	}
+    	System.out.println("");
+    	Auction[] auctions = restTemplate.getForObject(API_URL + "?title_like=" + auctionTitle , Auction[].class);
+        return auctions;
     }
 
     public static Auction[] findAuctionsSearchPrice() {
-        // api code here
-        return null;
+    	double price = 0;
+    	System.out.println("Please enter a price to find auctions: ");
+
+    	try {
+    		price = Double.parseDouble(scanner.nextLine());
+    	} catch (NumberFormatException exception) {
+            System.out.println("Error parsing the input for menu selection.");
+        }
+    	System.out.println("");
+    	Auction[] auctions = restTemplate.getForObject(API_URL + "?currentBid_lte=" + price , Auction[].class);
+    	return auctions;
     }
 
     private static void run() {
