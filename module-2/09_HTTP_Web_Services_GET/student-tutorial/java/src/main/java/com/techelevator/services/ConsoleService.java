@@ -93,7 +93,7 @@ public class ConsoleService {
         }
         return menuSelection;
     }
-
+    
     /**
      * Will close the scanner and exit the program.
      */
