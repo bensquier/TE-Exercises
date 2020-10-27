@@ -69,17 +69,56 @@ public class AuctionService {
 
     public Auction add(String auctionString) {
         // place code here
-        return null;
+    	Auction auction = makeAuction(auctionString);
+    	try {
+	    	if(auction == null) {
+	    		return null;
+	    	}
+    	HttpEntity<Auction> entity = makeEntity(auction);
+    	try {
+    		auction = restTemplate.postForObject(BASE_URL, entity, Auction.class);
+    	} catch (RestClientResponseException ex){
+    		System.out.println(ex.getRawStatusCode() + " : " + ex.getStatusText());
+    		return null;
+    	}
+	} catch (ResourceAccessException ex) {
+		System.out.println("Please connect to server.");
+		return null;
     }
+        return auction;
+    }
+    	
 
     public Auction update(String auctionString) {
         // place code here
-        return null;
+    	Auction auction = makeAuction(auctionString);
+    	try {
+    	if(auction == null) {
+    		return null;
+    	}
+    	restTemplate.put(BASE_URL + auction.getId(), auction);    	
+    	}catch (ResourceAccessException rae) {
+    		System.out.println("Please connect to server.");
+    		return null;
+        }catch (RestClientResponseException ex){
+    		System.out.println(ex.getRawStatusCode() + " : " + ex.getStatusText());
+    		return null;
+        }
+    	return auction;
     }
 
     public boolean delete(int id) {
     	// place code here
-    	return false; 
+    	try {
+    	restTemplate.delete(BASE_URL + "/" + id);
+    	}catch (ResourceAccessException rae) {
+    		System.out.println("Please connect to server.");
+    		return false;
+        }catch (RestClientResponseException ex){
+    		System.out.println(ex.getRawStatusCode() + " : " + ex.getStatusText());
+    		return false;
+        }
+    	return true; 
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
