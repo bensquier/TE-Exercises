@@ -30,16 +30,33 @@ public class LocationService {
 
     public Location add(String CSV) {
     	// api code here
-	    return null;
+    	Location location = makeLocation(CSV);
+    	
+    	if(location == null ) {
+    		return null;
+    	}
+    	HttpEntity entity = makeEntity(location);
+    	try {
+    	location = restTemplate.postForObject(BASE_URL, entity, Location.class);
+    	} catch (RestClientResponseException ex){
+    		System.out.println(ex.getRawStatusCode() + " : " + ex.getStatusText());
+    	}
+    	return location;
     }
 
     public void delete(int id) {
         // api code here
+    	restTemplate.delete(BASE_URL + id);
     }
 
     public Location update(String CSV) {
         // api code here
-        return null;
+    	Location location = makeLocation(CSV);
+    	if(location == null) {
+    		return null;
+    	}
+    	restTemplate.put(BASE_URL + location.getId(), location);
+        return location;
     }
 
     private HttpEntity<Location> makeEntity(Location location){
