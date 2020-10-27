@@ -3,6 +3,7 @@ package com.techelevator.auction;
 import java.util.Scanner;
 
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 public class App {
@@ -12,8 +13,13 @@ public class App {
     private static Scanner scanner;
 
     public static void main(String[] args) {
-        init();
-        run();
+    	try {
+    		init();
+    		run();
+    	} catch(ResourceAccessException rae) {
+    		System.out.println("");
+    		System.out.println("Please connect to the server.");
+    	}
     }
 
     /**
@@ -35,7 +41,7 @@ public class App {
 
     public static Auction[] findAuctionsSearchTitle(String auctionTitle) {
     	Auction[] auctions = restTemplate.getForObject(API_URL + "?title_like=" + auctionTitle , Auction[].class);
-        return auctions;
+    	return auctions;
     }
 
     public static Auction[] findAuctionsSearchPrice(double price) {
