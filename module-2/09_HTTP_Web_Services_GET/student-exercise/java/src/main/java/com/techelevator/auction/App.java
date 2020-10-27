@@ -23,47 +23,22 @@ public class App {
         scanner = new Scanner(System.in);
     }
 
-    public static Auction[] listAllAuctions() {
+    public static  Auction[] listAllAuctions() {
     	Auction[] auctions = restTemplate.getForObject(API_URL, Auction[].class);
     	return auctions;
     }
 
-    public static Auction listDetailsForAuction() {
-    	int auctionId = -1;
-    	System.out.print("Please choose a auction to get details for: ");
-    	try {
-           auctionId = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException exception) {
-            System.out.println("Error parsing the input for menu selection.");
-        }
-        System.out.println("");
+    public static Auction listDetailsForAuction(int auctionId) {
     	Auction auction = restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
     	return auction;
     }
 
-    public static Auction[] findAuctionsSearchTitle() {
-    	String auctionTitle = "";
-    	System.out.println("Please enter the title of the auction you would like to find: ");
-    	try {
-    		auctionTitle = scanner.nextLine();
-    	} catch (Exception e) {
-    		System.out.println("Error parsing the input for menu selection.");
-    	}
-    	System.out.println("");
+    public static Auction[] findAuctionsSearchTitle(String auctionTitle) {
     	Auction[] auctions = restTemplate.getForObject(API_URL + "?title_like=" + auctionTitle , Auction[].class);
         return auctions;
     }
 
-    public static Auction[] findAuctionsSearchPrice() {
-    	double price = 0;
-    	System.out.println("Please enter a price to find auctions: ");
-
-    	try {
-    		price = Double.parseDouble(scanner.nextLine());
-    	} catch (NumberFormatException exception) {
-            System.out.println("Error parsing the input for menu selection.");
-        }
-    	System.out.println("");
+    public static Auction[] findAuctionsSearchPrice(double price) {
     	Auction[] auctions = restTemplate.getForObject(API_URL + "?currentBid_lte=" + price , Auction[].class);
     	return auctions;
     }
@@ -78,16 +53,42 @@ public class App {
                 menuSelection = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException exception) {
                 System.out.println("Error parsing the input for menu selection.");
-            }
+            } 
             System.out.println("");
             if (menuSelection == 1) {
                 printAuctions(listAllAuctions());
             } else if (menuSelection == 2) {
-                printAuction(listDetailsForAuction());
+            	int auctionId = -1;
+            	System.out.print("Please choose a auction to get details for: ");
+            	try {
+            		auctionId = Integer.parseInt(scanner.nextLine());
+            		if(auctionId >= 1 && auctionId < listAllAuctions().length) {
+            			printAuction(listDetailsForAuction(auctionId));
+            		} else {
+            			System.out.println("Please choose a auction in progress.");
+            		}
+                   
+                } catch (NumberFormatException exception) {
+                    System.out.println("Error parsing the input for menu selection.");
+                }
+                System.out.println("");
+                
             } else if (menuSelection == 3) {
-                printAuctions(findAuctionsSearchTitle());
+            	String auctionTitle = "";
+            	System.out.println("Please enter the title of the auction you would like to find: ");
+            	auctionTitle = scanner.nextLine();
+            	System.out.println("");            	
+                printAuctions(findAuctionsSearchTitle(auctionTitle));
             } else if (menuSelection == 4) {
-                printAuctions(findAuctionsSearchPrice());
+            	double price = 0;
+            	System.out.println("Please enter a price to find auctions: ");
+            	try {
+            		price = Double.parseDouble(scanner.nextLine());
+            	} catch (NumberFormatException exception) {
+                    System.out.println("Error parsing the input for menu selection.");
+                }
+            	System.out.println("");
+                printAuctions(findAuctionsSearchPrice(price));
             } else if (menuSelection == 5) {
                 scanner.close();
                 System.exit(0);

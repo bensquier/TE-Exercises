@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.techelevator.models.Auction;
 
+
 public class ConsoleService {
 
     private final Scanner scanner;

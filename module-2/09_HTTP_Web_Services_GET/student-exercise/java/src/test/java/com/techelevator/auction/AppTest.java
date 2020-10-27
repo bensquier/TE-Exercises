@@ -35,7 +35,7 @@ public class AppTest {
                 System.setIn(new ByteArrayInputStream(input.getBytes()));
                 app = new App();
                 // Creates new scanner with test input stream
-                app.init();
+                App.init();
                 mockRestTemplate = Mockito.mock(RestTemplate.class);
         }
 
@@ -48,7 +48,7 @@ public class AppTest {
                 Mockito.when(mockRestTemplate.getForObject(Mockito.eq(url), Mockito.eq(Auction[].class)))
                                 .thenReturn(auctions);
 
-                app.restTemplate = mockRestTemplate;
+                App.restTemplate = mockRestTemplate;
         }
 
         /**
@@ -69,7 +69,7 @@ public class AppTest {
         public void listAllAuctions() {
                 initForScannerPurposes("1");
                 mockHelper("http://localhost:3000/auctions");
-                assertArrayEquals(app.listAllAuctions(), auctions);
+                assertArrayEquals(App.listAllAuctions(), auctions);
         }
 
         @Test
@@ -79,9 +79,9 @@ public class AppTest {
 
                 Mockito.when(mockRestTemplate.getForObject(Mockito.eq(url), Mockito.eq(Auction.class)))
                                 .thenReturn(auction);
-                app.restTemplate = mockRestTemplate;
+                App.restTemplate = mockRestTemplate;
 
-                assertEquals(auction, app.listDetailsForAuction());
+                assertEquals(auction, App.listDetailsForAuction(1));
         }
 
         /*
@@ -95,10 +95,10 @@ public class AppTest {
 
                 Mockito.when(mockRestTemplate.getForObject(Mockito.eq(url), Mockito.eq(Auction.class)))
                                 .thenThrow(new NumberFormatException());
-                app.restTemplate = mockRestTemplate;
+                App.restTemplate = mockRestTemplate;
 
                 // Act
-                Auction auction = app.listDetailsForAuction();
+                Auction auction = App.listDetailsForAuction(0);
 
                 // Assert
                 Mockito.verify(mockRestTemplate, Mockito.times(1)).getForObject(ArgumentMatchers.anyString(),
@@ -111,7 +111,7 @@ public class AppTest {
         public void findAuctionsSearchTitle() {
                 initForScannerPurposes("Zero");
                 mockHelper("http://localhost:3000/auctions?title_like=Zero");
-                assertArrayEquals(auctions, app.findAuctionsSearchTitle());
+                assertArrayEquals(auctions, App.findAuctionsSearchTitle("Zero"));
         }
 
         @Test
@@ -124,7 +124,7 @@ public class AppTest {
                 App.restTemplate = mockRestTemplate;
 
                 // Act
-                Auction[] auctions = App.findAuctionsSearchTitle();
+                Auction[] auctions = App.findAuctionsSearchTitle(null);
 
                 // Assert
                 Mockito.verify(mockRestTemplate, Mockito.times(1)).getForObject(ArgumentMatchers.anyString(),
@@ -136,7 +136,7 @@ public class AppTest {
         public void findAuctionsSearchPrice() {
                 initForScannerPurposes("23.25");
                 mockHelper("http://localhost:3000/auctions?currentBid_lte=23.25");
-                assertArrayEquals(app.findAuctionsSearchPrice(), auctions);
+                assertArrayEquals(App.findAuctionsSearchPrice(23.25), auctions);
         }
 
         /*
@@ -149,10 +149,10 @@ public class AppTest {
                 Mockito.when(mockRestTemplate.getForObject(
                                 Mockito.eq("http://localhost:3000/auctions?currentBid_lte=what"),
                                 Mockito.eq(Auction[].class))).thenThrow(new NumberFormatException());
-                app.restTemplate = mockRestTemplate;
+                App.restTemplate = mockRestTemplate;
 
                 // Act
-                Auction[] auctions = app.findAuctionsSearchPrice();
+                Auction[] auctions = App.findAuctionsSearchPrice(0);
 
                 // Assert
                 Mockito.verify(mockRestTemplate, Mockito.times(1)).getForObject(ArgumentMatchers.anyString(),
