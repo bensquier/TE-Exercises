@@ -88,4 +88,11 @@ public class MemoryReservationDAO implements ReservationDAO {
         return getMaxID() + 1;
     }
 
+	@Override
+	public void delete(int reservationID) {
+		Reservation targetReservation = this.get(reservationID);
+		
+		reservations.remove(reservations.indexOf(targetReservation));
+	}
+
 }

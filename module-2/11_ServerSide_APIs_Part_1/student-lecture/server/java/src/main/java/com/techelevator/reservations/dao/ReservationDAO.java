@@ -12,5 +12,7 @@ public interface ReservationDAO {
     Reservation get(int reservationID);
 
     Reservation create(Reservation reservation, int hotelID);
+    
+    void delete(int reservationID);
 
 }
