@@ -85,7 +85,7 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
         return reservationDAO.create(reservation, hotelID);
     }
@@ -96,7 +96,22 @@ public class HotelController {
      * @param state the state to filter by
      * @param city  the city to filter by
      * @return a list of hotels that match the city & state
+     * @throws ReservationNotFoundException 
      */
+    
+    @RequestMapping(path = "reservations/{reservationID}", method = RequestMethod.PUT)
+    public Reservation update(@Valid @RequestBody Reservation reservation, @PathVariable int reservationID) throws ReservationNotFoundException {    	
+    	
+    	
+    	return reservationDAO.update(reservation, reservationID);
+    }
+    
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "reservations/{reservationID}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int reservationID) throws ReservationNotFoundException {
+    	reservationDAO.delete(reservationID);
+    }
+    
     @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
     public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city) {
 
