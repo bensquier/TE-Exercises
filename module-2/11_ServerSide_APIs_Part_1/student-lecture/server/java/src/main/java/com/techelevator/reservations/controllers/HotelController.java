@@ -105,6 +105,6 @@ public class HotelController {
     
      @RequestMapping(path = "reservations/{resID}", method = RequestMethod.DELETE)
      public void deleteReservation(@PathVariable int resID) {
-    	 //reservationDAO.delete;
+    	 reservationDAO.delete(resID);
      }
 }
