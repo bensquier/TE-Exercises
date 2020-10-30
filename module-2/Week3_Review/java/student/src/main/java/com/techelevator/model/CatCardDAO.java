@@ -1,6 +1,8 @@
 package com.techelevator.model;
 
+
 import java.util.List;
+import com.techelevator.model.CatCard;
 
 public interface CatCardDAO {
 
@@ -15,3 +17,5 @@ public interface CatCardDAO {
 	boolean delete(long id);
 
 }
+
+
