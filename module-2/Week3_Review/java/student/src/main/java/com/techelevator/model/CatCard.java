@@ -2,28 +2,38 @@ package com.techelevator.model;
 
 import javax.validation.constraints.NotEmpty;
 
-public class CatCard {
+import org.springframework.data.annotation.Id;
 
-	public Long catCardId;
+public class CatCard {
+	@Id
+	public Long id;
 	@NotEmpty
-	public String catFact;
+	public String fact;
 	@NotEmpty
 	public String imgUrl;
 	@NotEmpty
 	public String caption;
-
-	public Long getCatCardId() {
-		return catCardId;
+	
+	public CatCard() {};
+	
+	public CatCard(RandomCatCardDTO randomCatCard) {
+		this.fact = randomCatCard.getFact();
+		this.imgUrl = randomCatCard.getImgUrl();
+		this.caption = randomCatCard.getCaption();
 	}
-	public void setCatCardId(Long catCardId) {
-		this.catCardId = catCardId;
+
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
-	public String getCatFact() {
-		return catFact;
+	public String getFact() {
+		return fact;
 	}
-	public void setCatFact(String catFact) {
-		this.catFact = catFact;
+	public void setFact(String fact) {
+		this.fact = fact;
 	}
 	
 	public String getImgUrl() {
