@@ -34,9 +34,19 @@ public class HotelService {
     if (reservation == null) {
       throw new HotelServiceException(INVALID_RESERVATION_MSG);
     }
+    
+    try {
+    	reservation = restTemplate.postForObject(BASE_URL + "hotels/"+ reservation.getHotelID() + 
+												"/reservations", makeReservationEntity(reservation),
+												Reservation.class);
+    } catch(RestClientResponseException rcr) {
+    	throw new HotelServiceException(rcr.getMessage() + ": " + rcr.getRawStatusCode() + ": " + rcr.getResponseBodyAsString());
+    }
+    catch(Exception e) {
+    	throw new HotelServiceException("It didn't work, I don't know why");
+    }
 
-    // TODO: Fix Me
-    throw new HotelServiceException("NOT IMPLEMENTED");
+    return reservation;
   }
 
   /**
