@@ -1,0 +1,21 @@
+body{
+    color: blanchedalmond;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: black;
+}
+header{
+    text-align: center;
+}
+p{
+    font-style: italic;
+}
+
+h2{
+    text-decoration: underline;
+    font-size: x-large;
+}
+
+img{
+    width: 800px;
+    height: 500px;
+}
