@@ -1,0 +1,159 @@
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+/*Set default body appearance and background*/
+body {
+    /*Set the default font*/
+    font-family: 'Raleway', 'sans-serif';
+
+    /*Set the gradient*/
+    background-image: linear-gradient(to bottom, #0000009a, #bbb);
+
+    /*Lock the background in place*/
+    background-attachment: fixed;
+    /*Do not repeat the background*/
+    background-repeat: no-repeat;
+
+    /*Do not wrap*/
+    white-space: nowrap;
+}
+
+div.trello-list {
+    /*Create multo-colum layout*/
+    display: inline-block;
+    
+    /*Set fixed width*/
+    width: 300px;
+
+    /*Set background color of blocks*/
+    background-color: #ddd;
+
+    /*Round edges of boxes*/
+    border-radius: 3px 5px;
+
+    /*align the lists to the top the row*/
+    vertical-align: top;
+
+    margin-right: 10px;
+
+}
+
+div.trello-list h2 {
+    margin: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/*Make the ol container as narrow as possible*/
+div.trello-list ol {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+div.trello-list li{
+    list-style: none;
+    background-color: rgb(255, 255, 255);
+
+    margin-bottom: 10px;
+    padding: 8px;
+
+    font-size: .9rem;
+    font-weight: bold;
+    border-radius: 2px;
+
+    white-space: normal;
+}
+
+div.trello-list li:hover {
+    background-color: blanchedalmond;
+    color: darkblue;
+}
+
+div.trello-list li:last-child {
+    margin-bottom: 0px;
+}
+
+div.trello-list a {
+    color: #888;
+    display: block;
+    text-decoration: none;
+    padding: 8px 0px 8px 8px;
+    font-size: .8;
+}
+
+div.trello-list a:hover {
+    color: blue;
+}
+
+header > h1, header > p {
+    display: inline-block;
+    color: lightgray;
+
+    height: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+    border-right: 2px solid #888;
+}
+
+header > h1 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+header > p {
+    font-size: .9rem;
+    padding-left: 1px;
+}
+
+.labels span {
+    display: inline-block;
+    vertical-align: top;
+    width: 40px;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.label.individual{
+    background-color: forestgreen;
+}
+
+.label.pair{
+    background-color: teal;
+}
+
+.label.general{
+    background-color: gold;
+}
+
+.label.pathway{
+    background-color: red;
+}
+
+header{
+    position: fixed;
+    top: 0px;
+    height: 50px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+body::-webkit-scrollbar{
+    width: 15px;
+}
+
+body::-webkit-scrollbar-track{
+    background-color: white
+}
+
+body:::-webkit-scrollbar-thumb{
+    background-color: darkgray;
+}
