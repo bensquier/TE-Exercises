@@ -1,0 +1,150 @@
+/* MOBILE */
+
+h2 {
+    font-size: 20px;
+}
+
+#page-header {
+    display: flex;
+    align-items: center;
+}
+
+#rainbow-popsicles{
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+main section, footer{
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.race-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.race-header img {
+    margin: 0 auto;
+    width: 150px;
+}
+
+.store h2 {
+    margin-bottom: 30px;
+}
+
+.store a {
+    display: block;
+    margin: 1em auto 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+input, select, textarea {
+    width: 80vw;
+}
+
+
+/* Desktop */
+
+@media screen and (min-width: 800px) {
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        grid-area: header;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    header nav ul li a {
+        display: block;
+        width: 175px;
+    }
+
+    body {
+        display: grid;
+        grid-template-areas: 
+            "header"
+            "main"
+            "footer";
+    }
+
+    main.index-main {
+        display: grid;
+        grid-area: main;
+        grid-template-areas: 
+            "rainbow rainbow"
+            "race store";
+    }
+
+    main section {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    div#facts-body {
+        padding-left: 15px;
+    }
+
+    #facts {
+        grid-area: rainbow;
+        display: flex;
+    }
+
+    #facts-header img {
+        max-width: 600px;
+    }
+
+    #facts ul li {
+        margin: 9px 0;
+    }
+
+    .race {
+        grid-area: race;
+        display: flex;
+        align-items: center;
+    }
+
+    .store {
+        grid-area: store;
+    }
+
+    .store h2 {
+        text-align: center;
+    }
+
+    .store p {
+        text-align: center;
+    }
+
+    footer {
+        grid-area: footer;
+        max-height: 150px;
+    }
+
+    /*Form Style*/
+
+
+    .contact-main{
+        grid-area: main;
+        height: 50%;
+    }
+
+    .contact-main section {
+        height: unset;
+    }
+
+    input, select {
+        width: 15vw;
+    }
+
+    textarea {
+        width: 50vw;
+    }
+}

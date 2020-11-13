@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="layout.css">
+</head>
+<body id="contact">
+    <header>
+        <div id="page-header">
+            <img src="../student/images/te-pops.png" alt="te-pops">
+            <h1>Tech Elevator Popsicles</h1>
+        </div>
+
+        <nav id="menu-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#store">Store</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-main">
+        <section>
+            <h2>Contact Us</h2>
+
+            <form method="POST" action="https://example.com/api/contact">
+                <div>
+                    <label for="name">Name:</label>
+                </div>
+                <div>
+                    <input id="name" name="name" type="text" />
+                </div>
+                <div>
+                    <label for="source">How did you hear of us?</label>
+                </div>
+                <div>
+                    <select name="source" id="source">
+                        <option value="">Please select an option</option>
+                        <option value="Popsicle Monthly">Popsicle Monthly</option>
+                        <option value="Popsicle Conissuer">Popsicle Conissuer</option>
+                        <option value="Popsicle Digest">Popsicle Digest</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="color">What color is your favorite popsicle?</label>
+                </div>
+                <div>
+                    <input id="color" name="color" type="color" value="#00afef"/>
+                </div>
+                <div>
+                    <label for="comments">Please let us know any comments you have:</label>
+                </div>
+                <div>
+                    <textarea name="comments" id="comments" cols="30" rows="5"></textarea>
+                </div>
+                
+                <div>
+                    <a href="#" class="submit-button" id="submit">Submit</a>                </div>
+            </form>
+        </section>
+    </main>
+
+
+
+    <footer>
+        <p>&copy; Tech Elevator 2020</p>
+    </footer>
+</body>
+</html>
