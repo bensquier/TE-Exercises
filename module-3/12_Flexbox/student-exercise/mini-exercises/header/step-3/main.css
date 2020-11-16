@@ -27,7 +27,7 @@ li {
   font-size: 20px;
   text-transform: uppercase;
   color: #707070;
-  padding: 0 20px 0 0;
+  padding: 0 0 0 0;
   margin-left: 20px;
 }
 
@@ -41,3 +41,15 @@ a:hover {
   color: #00AFEF;
   text-decoration: underline;
 }
+
+/* FLEX */
+
+header {
+  display: flex;
+}
+
+ul{
+  display: flex;
+  justify-content: flex-end;
+}
+

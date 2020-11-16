@@ -16,3 +16,11 @@ body {
   color: #fff;
   border: solid 1px #777;
 }
+
+/* FLEX */
+
+div{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}

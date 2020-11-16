@@ -20,3 +20,9 @@ body {
   text-align: center;
   border: solid 1px #777;
 }
+
+/* FLEX */
+
+.container{
+  flex-wrap: wrap;
+}
