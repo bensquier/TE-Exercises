@@ -31,6 +31,7 @@ nav  {
   flex-direction: row;
   align-items: center;
   padding-left: 15%;
+  grid-gap: 100px;
 }
 
 /* YOU WON'T NEED TO CHANGE ANY STYLES BELOW THIS LINE */
