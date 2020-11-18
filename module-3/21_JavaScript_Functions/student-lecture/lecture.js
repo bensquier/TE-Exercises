@@ -27,7 +27,13 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
+  function multiplyTogether(firstParameter, secondParameter){
 
+    let result = firstParameter * secondParameter;
+    return result;
+    //JavaScript runs in the browser so the longer the function the longer it takes to run.
+    //The best return would be return firstParameter * secondParameter
+  }
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -38,7 +44,9 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
-
+  function multiplyNoUndefined(firstParameter=0, secondParameter=0){
+    return firstParameter * secondParameter;
+  }
 
  
 /**
@@ -86,10 +94,50 @@ function scopeTest() {
     console.log("This won't print!");
   }
 }
-
+/**
+ * JSDoc example: Generate documentation using /** *"/" and tab
+ * @param {string} name name of the person
+ * @param {number} age age of the person
+ * @param {string[]} listOfQuirks a string array listing their quirks
+ * @param {string} [separator = ","] the list separator
+ * @returns {string} A sentence describing the person and their quirks 
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
+}
+//===================================================
+// Arrow functions
+//===================================================
+
+//For Each Demo
+
+function forEachDemo() {
+
+  let numbers = [0,1,2,3,4];
+  let counter = 0;
+
+  numbers.forEach((num) => {
+      numbers[counter] = num * 2;
+      counter++;
+    }
+  )
+  return numbers;
+}
+
+//Map Demo
+
+function mapDemo(){
+  
+  let numbers = [0,1,2,3,4];
+  
+  let newNumbers = numbers.map(
+    (num) => {
+      return num * 3;
+    }
+  );
+
+  return newNumbers;
 }
 
 /**
@@ -99,8 +147,26 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @param {number[]} numbersToSum numbers to add up
  * @returns {number} sum of all the numbers
  */
-function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+function sumAllNumbers1(numbersToSum) {
+  return numbersToSum.reduce(reducer);
+}
+
+function reducer(sum, number){
+  return sum + number;
+}
+
+let variable = (sum, number) => {return sum + number;};
+
+function sumAllNumbers2(numbersToSum) {
+  return numbersToSum.reduce(variable);
+}
+
+function sumAllNumbers3(numbersToSum) {
+  return numbersToSum.reduce((sum, number) => {return sum + number;});
+}
+
+function makeOneString(inputArray) {
+  return inputArray.reduce((accum, val) => {return accum + ', ' + val;});
 }
 
 /**
@@ -111,4 +177,11 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) {
+
+  return numbersToFilter.filter(
+    (num) =>{
+    return num % 3 === 0;
+  }
+  );
+}
