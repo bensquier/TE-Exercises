@@ -89,7 +89,19 @@ function addAll(){
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
-
+/**
+ * 
+ * @param {string[]} array an array of strings.
+ * @returns {string[]} an array of strings with Happy prepended to each word.
+ */
+function makeHappy(array){
+    let newWord = array.map(
+        (word) => {
+            return `Happy ${word}`;
+        } 
+    )
+    return newWord;
+}
 /*
  * Write and document a function called getFullAddressesOfProperties
  * that takes an array of JavaScript objects containing the
@@ -107,14 +119,48 @@ function addAll(){
  *
  * Use `map` and an anonymous function.
  */
-
+/**
+ * 
+ * @param {object[]} objects an array of objects containing address properties.
+ * @returns {string[]} the address properties formatted as mailing addresses.
+ */
+function getFullAddressesOfProperties(objects){
+    let addressProperties = objects.map(
+        (properties) => {
+            return properties.streetNumber + ' ' + properties.streetName + ' ' + properties.streetType + ' ' + properties.city + ' ' + properties.state + ' ' + properties.zip;
+        }
+    );
+    return addressProperties;
+       
+}
 /*
  * Write and document a function called findLargest.
  *
  * Using `forEach`, find the largest element in an array.
  * It must work for strings and numbers.
  */
+/**
+ * 
+ * @param {Array} array can be an array of numbers or strings
+ * @returns the largest value found in the array. 
+ * If an array of strings was input it will return the string 
+ * that starts with the letter closest to the end of the alphabet. 
+ */
+function findLargest(array){
+    let thing = [];
 
+    array.forEach(element => {
+        if(element.length >1){
+        thing.push(element.toString());
+        }
+        else{
+            thing.push(element);
+        }
+    });
+    thing.sort().reverse();
+    
+    return thing[0];
+}
 /*
  * CHALLENGE
  * Write and document a function called getSumOfSubArrayValues.
